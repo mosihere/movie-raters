@@ -6,7 +6,8 @@ app_name = 'store'
 
 router = DefaultRouter()
 router.register('movies', views.MovieViewSet, basename='movies')
-router.register('stars', views.StarViewSet, basename='stars')
+router.register('stars', views.StarViewSet)
+router.register('reviews', views.ReviewViewSet)
 
 
 urlpatterns = router.urls
