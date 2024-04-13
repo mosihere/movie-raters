@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from core.models import User
 
 
 class Star(models.Model):
@@ -12,7 +13,7 @@ class Star(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(max_length=255)
-    imdb_rate = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    imdb_rate = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
     director = models.CharField(max_length=255, null=True, blank=True)
     stars = models.ManyToManyField(Star, blank=True, related_name='movies')
     likes = models.ManyToManyField(User, related_name='liked_movies', blank=True)
@@ -24,11 +25,10 @@ class Movie(models.Model):
         return self.likes.count()
 
 class Review(models.Model):
-    title = models.CharField(max_length=255)
     description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    likes = models.ManyToManyField(User, related_name='liked_comments', blank=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_list')
+    likes = models.ManyToManyField(User, related_name='liked_reviews', blank=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='review_list')
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews')
 
     def __str__(self) -> str:
