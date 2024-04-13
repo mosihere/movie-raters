@@ -15,7 +15,7 @@ class Movie(models.Model):
     imdb_rate = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     director = models.CharField(max_length=255, null=True, blank=True)
     stars = models.ManyToManyField(Star, blank=True, related_name='movies')
-    likes = models.ManyToManyField(User, related_name='liked_movies')
+    likes = models.ManyToManyField(User, related_name='liked_movies', blank=True)
 
     def __str__(self) -> str:
         return self.title
@@ -27,7 +27,7 @@ class Review(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    likes = models.ManyToManyField(User, related_name='liked_comments')
+    likes = models.ManyToManyField(User, related_name='liked_comments', blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_list')
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews')
 
