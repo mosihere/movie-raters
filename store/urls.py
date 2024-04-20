@@ -5,7 +5,7 @@ from . import views
 app_name = 'store'
 
 router = DefaultRouter()
-router.register('movies', views.MovieViewSet, basename='movies')
+router.register('movies', views.MovieViewSet)
 router.register('stars', views.StarViewSet)
 router.register('reviews', views.ReviewViewSet)
 
