@@ -7,7 +7,7 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ['id', 'title', 'imdb_rate', 'director', 'total_likes', 'stars', 'reviews']
 
-    stars = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    stars = serializers.PrimaryKeyRelatedField(many=True, queryset=Star.objects.all())
     reviews = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
 class StarSerializer(serializers.ModelSerializer):
