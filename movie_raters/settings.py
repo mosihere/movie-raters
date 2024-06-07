@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_filters',
+    'django_filters',
+    'corsheaders',
     'djoser',
     'rest_framework',
     'rest_framework.authtoken',
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -160,3 +162,7 @@ DJOSER = {
 }
 
 AUTH_USER_MODEL = 'core.User'
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+
