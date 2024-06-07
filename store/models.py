@@ -11,10 +11,15 @@ class Star(models.Model):
         return f'{self.first_name} {self.last_name}'
     
 
+class Genre(models.Model):
+    name = models.CharField(max_length=50)
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=255)
     imdb_rate = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
     director = models.CharField(max_length=255, null=True, blank=True)
+    genres = models.ManyToManyField(Genre, blank=True, related_name='movies')
     stars = models.ManyToManyField(Star, blank=True, related_name='movies')
     likes = models.ManyToManyField(User, related_name='liked_movies', blank=True)
 
