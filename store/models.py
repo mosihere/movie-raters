@@ -29,6 +29,7 @@ class Movie(models.Model):
     def total_likes(self):
         return self.likes.count()
 
+
 class Review(models.Model):
     description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -41,3 +42,12 @@ class Review(models.Model):
 
     def total_likes(self):
         return self.likes.count()
+
+class Comment(models.Model):
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f'Comment by {self.user.username} on {self.review}'
