@@ -8,6 +8,7 @@ router = DefaultRouter()
 router.register('movies', views.MovieViewSet)
 router.register('stars', views.StarViewSet)
 router.register('reviews', views.ReviewViewSet)
+router.register('comments', views.CommentViewSet)
 
 
 urlpatterns = router.urls
