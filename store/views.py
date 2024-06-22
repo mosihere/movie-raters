@@ -25,9 +25,8 @@ class StarViewSet(ModelViewSet):
 
 class ReviewViewSet(ModelViewSet):
     serializer_class = ReviewSerializer
-    queryset = Review.objects.select_related('owner').select_related('movie').prefetch_related('likes').all()
+    queryset = Review.objects.select_related('owner').select_related('movie').prefetch_related('likes', 'comments').all()
     pagination_class = DefaultPagination
-
 
 
 class CommentViewSet(ModelViewSet):
