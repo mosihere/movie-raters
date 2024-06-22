@@ -23,9 +23,11 @@ class StarSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ['id', 'description', 'owner', 'movie', 'total_likes']
+        fields = ['id', 'description', 'created_on', 'owner', 'movie', 'total_likes', 'comments']
 
     movie = serializers.HyperlinkedRelatedField(view_name='store:movie-detail', queryset=Movie.objects.all())
+    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
