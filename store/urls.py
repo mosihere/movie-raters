@@ -9,6 +9,7 @@ router.register('movies', views.MovieViewSet)
 router.register('stars', views.StarViewSet)
 router.register('reviews', views.ReviewViewSet)
 router.register('comments', views.CommentViewSet)
+router.register('genres', views.GenreViewSet)
 
 
 urlpatterns = router.urls
